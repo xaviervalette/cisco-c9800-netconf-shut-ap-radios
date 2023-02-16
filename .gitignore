@@ -1,3 +1,8 @@
+config.yml
+src/bin
+src/include
+src/lib
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
