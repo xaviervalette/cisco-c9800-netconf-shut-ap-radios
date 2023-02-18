@@ -55,6 +55,41 @@ Go to ```Configuration > Tags & Profiles > Tags > RF``` section:
 </tr>
 </table>
 
+## Get started
+1. Clone or download this repo
+```console
+git clone https://github.com/xaviervalette/cisco-c9800-netconf-disable-ap-radios
+```
+2. Install required packages
+```console
+pip3 install -r requirements.txt
+```
+3. Add a file called config.yml as follow:
+```diff
+└── merakiTemplateIpRangeUpdate/
++   ├── config.yml
+    └── src/
+         └── main.py      
+```
+4. In the config.yml file, add the following variables:
+```yaml
+#config.yml
+---
+
+controllers:
+  - name: "<wlc name>"
+    username: "<wlc NETCONF username>"
+    password: "<wlc NETCONF password>"
+    port: "<wlc NETCONF port>"
+    host: "<wlc NETCONF @IP>"
+tagName: <RF tag name>
+...
+
+```
+5. Now you can run the code by using the following command:
+```console
+python3 src/updateTemplateIpRange.py
+```
 
 ```xml
 <nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:21e08907-aa6d-4ce0-a255-b5f2d640b967">
