@@ -2,6 +2,8 @@ config.yml
 src/bin
 src/include
 src/lib
+runConf.txt
+output/192.168.1.98.xml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
