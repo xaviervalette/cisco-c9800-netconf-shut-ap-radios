@@ -40,12 +40,14 @@ wireless tag rf FR42_STE07ALD
 <tr>
 <td>
 
-1
+<img width="1658" alt="image" src="https://user-images.githubusercontent.com/28600326/219868447-af490010-f71f-43c4-a9c4-5f1cfc69afd6.png">
+
 
 </td>
 <td>
     
-2
+<img width="1658" alt="image" src="https://user-images.githubusercontent.com/28600326/219868431-a67a6cf4-34f1-4cb8-8963-0c81ded91f2a.png">
+
 
 </td>
 </tr>
