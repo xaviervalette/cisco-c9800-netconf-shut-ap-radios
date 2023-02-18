@@ -1,5 +1,7 @@
-# cisco-c9800-netconf-disable-radios
- A python script using NETCONF shutdown radios of C9800 managed APs
+# Cisco Catalyst 9800 NETCONF disable radios
+ A python script using NETCONF shutdown radios of C9800 managed APs:
+ 
+<img width="725" alt="image" src="https://user-images.githubusercontent.com/28600326/219903794-64f2f4c3-d92e-47fa-bc7f-7d57a7270449.png">
 
 ## Targeted changes
 ### CLI configuration changes
@@ -13,9 +15,9 @@
 
 ```diff
 wireless tag rf FR42_STE07ALD
--24ghz-rf-policy 15dbm_24ghz
--5ghz-rf-policy 15dbm_5ghz
--6ghz-rf-policy 15dbm_6ghz
+ 24ghz-rf-policy 15dbm_24ghz
+ 5ghz-rf-policy 15dbm_5ghz
+ 6ghz-rf-policy 15dbm_6ghz
 ```
 
 </td>
@@ -26,6 +28,9 @@ wireless tag rf FR42_STE07ALD
 +24ghz-rf-policy No_24ghz
 +5ghz-rf-policy No_5ghz
 +6ghz-rf-policy No_6ghz
+-24ghz-rf-policy 15dbm_24ghz
+-5ghz-rf-policy 15dbm_5ghz
+-6ghz-rf-policy 15dbm_6ghz
 ```
 </td>
 </tr>
@@ -33,6 +38,7 @@ wireless tag rf FR42_STE07ALD
 
 ### GUI configuration changes
 
+Go to ```Configuration > Tags & Profiles > Tags > RF``` section:
 <table>
 <tr>
 <td> Before </td> <td> After </td>
@@ -40,15 +46,11 @@ wireless tag rf FR42_STE07ALD
 <tr>
 <td>
 
-<img width="1658" alt="image" src="https://user-images.githubusercontent.com/28600326/219868447-af490010-f71f-43c4-a9c4-5f1cfc69afd6.png">
-
-
+<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219903092-88f22b85-4e31-4ef2-a6cd-e7fd7f3af408.png">
 </td>
 <td>
     
-<img width="1658" alt="image" src="https://user-images.githubusercontent.com/28600326/219868431-a67a6cf4-34f1-4cb8-8963-0c81ded91f2a.png">
-
-
+<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219903100-5c4427ec-285c-406b-95f0-9d6ab0e67482.png">
 </td>
 </tr>
 </table>
