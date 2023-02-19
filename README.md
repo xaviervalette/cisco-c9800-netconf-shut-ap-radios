@@ -8,7 +8,7 @@
 
 <table>
 <tr>
-<td> Before </td> <td> After </td>
+<th width="800px"> Before </th> <th width="800px"> After </th>
 </tr>
 <tr>
 <td>
@@ -41,7 +41,7 @@ wireless tag rf FR42_STE07ALD
 Go to ```Configuration > Tags & Profiles > Tags > RF``` section:
 <table>
 <tr>
-<td> Before </td> <td> After </td>
+<th width="800px"> Before </th> <th width="800px"> After </th>
 </tr>
 <tr>
 <td>
@@ -97,7 +97,7 @@ python3 src/main.py
 
 <table>
 <tr>
-<td> Status </td> <td> Response </td>
+<th width="800px"> Variable </th> <th width="800px"> Value </th>
 </tr>
 <tr>
 <td> Target datastore </td>
@@ -116,7 +116,7 @@ python3 src/main.py
 </td>
 </tr>
 <tr>
-<td> Filters </td>
+<td> NETCONF Filter </td>
 <td>
     
 ```xml
