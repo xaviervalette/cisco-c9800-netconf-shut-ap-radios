@@ -14,19 +14,21 @@ for c9800 in config["controllers"]:
     host = c9800["host"]
     device_params={"name":"iosxe"}
 
-netconf_filter = """ <filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> 
-      <rf-cfg-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-rf-cfg">
+netconf_filter = """ 
+<filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> 
+    <rf-cfg-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-rf-cfg">
         <rf-tags>
-          <rf-tag>
+            <rf-tag>
             <tag-name>FR42_STE07ALD</tag-name>
             <description/>
             <dot11a-rf-profile-name></dot11a-rf-profile-name>
             <dot11b-rf-profile-name></dot11b-rf-profile-name>
             <dot11-6ghz-rf-prof-name></dot11-6ghz-rf-prof-name>
-          </rf-tag>
+            </rf-tag>
         </rf-tags>
-      </rf-cfg-data>
-</filter> """
+    </rf-cfg-data>
+</filter>
+"""
 
 
 with manager.connect(host=host, port=port, username=username, password=password, hostkey_verify=False, device_params=device_params) as m:
@@ -34,6 +36,6 @@ with manager.connect(host=host, port=port, username=username, password=password,
     temp = xml.dom.minidom.parseString(c)
     new_xml = temp.toprettyxml()
     print(new_xml)
-    with open("%s_rf-tags.xml" % host, 'w') as f:
+    with open("conf/%s_rf-tags.xml" % host, 'w') as f:
         f.write(new_xml)
 
