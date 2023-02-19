@@ -105,8 +105,15 @@ rfTags:
 
 ```
 5. Now you can run the code by using the following command:
+
+Disable the radio of access points:
 ```console
-python3 src/main.py
+python3 src/main.py 0
+```
+
+Enable the radio of access points:
+```console
+python3 src/main.py 1
 ```
 
 ## Output
