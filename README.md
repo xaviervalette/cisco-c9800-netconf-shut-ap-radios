@@ -4,6 +4,9 @@
 <img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219956385-baa50880-bb4f-490e-89c6-2a4e0782813a.png">
 
 ## Targeted changes
+
+To do so, the script updates RF Profiles of 2.4GHz, 5GHz and 6GHz bands for given RF Tags.
+
 ### CLI configuration changes
 
 <table>
