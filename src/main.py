@@ -1,41 +1,37 @@
-from ncclient import manager
-import yaml
-import xml.dom.minidom
+# Import necessary libraries
+from ncclient import manager    # ncclient library used to manage NETCONF operations
+import yaml    # yaml library used to read YAML configuration files
+from xml.dom import minidom    # xml.dom library used to parse XML files
 
-# Open the config.yml file and load its contents into the 'config' variable
+# Open the configuration YAML file and load its contents into the 'config' variable
 with open('config.yml', 'r') as file:
     config = yaml.safe_load(file)
 
 # Set up device info
-for c9800 in config["controllers"]:
-    username=c9800["username"]
-    password=c9800["password"]
-    port = c9800["port"]
-    host = c9800["host"]
-    device_params={"name":"iosxe"}
+for controller in config["controllers"]:
+    username = controller["username"]
+    password = controller["password"]
+    port = controller["port"]
+    host = controller["host"]
+    device_params = {"name": "iosxe"}
 
-netconf_filter = """ 
-<filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> 
-    <rf-cfg-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-rf-cfg">
-        <rf-tags>
-            <rf-tag>
-            <tag-name>FR42_STE07ALD</tag-name>
-            <description/>
-            <dot11a-rf-profile-name></dot11a-rf-profile-name>
-            <dot11b-rf-profile-name></dot11b-rf-profile-name>
-            <dot11-6ghz-rf-prof-name></dot11-6ghz-rf-prof-name>
-            </rf-tag>
-        </rf-tags>
-    </rf-cfg-data>
-</filter>
-"""
+    # Read in the NETCONF XML configuration file and convert to string
+    netconf_config_xml = minidom.parse('netconf/config/noShutRadios.xml').toxml()
 
+    # Connect to the device and edit its configuration
+    with manager.connect(host=host, port=port, username=username, password=password, hostkey_verify=False, device_params=device_params) as netconf_manager:
+        edit_config_response = netconf_manager.edit_config(netconf_config_xml, target='running')
 
-with manager.connect(host=host, port=port, username=username, password=password, hostkey_verify=False, device_params=device_params) as m:
-    c = m.get_config('running', netconf_filter).data_xml
-    temp = xml.dom.minidom.parseString(c)
-    new_xml = temp.toprettyxml()
-    print(new_xml)
-    with open("conf/%s_rf-tags.xml" % host, 'w') as f:
-        f.write(new_xml)
+    # Read in the NETCONF XML filter file and convert to string
+    netconf_filter_xml = minidom.parse('netconf/filter/getRfTags.xml').toxml()
 
+    # Connect to the device and retrieve its configuration, then parse and format the output
+    with manager.connect(host=host, port=port, username=username, password=password, hostkey_verify=False, device_params=device_params) as netconf_manager:
+        get_config_response = netconf_manager.get_config('running', netconf_filter_xml).data_xml
+        parsed_xml = minidom.parseString(get_config_response)
+        pretty_xml = parsed_xml.toprettyxml()
+        print(pretty_xml)
+
+        # Write the output to a file
+        with open("conf/%s_rf-tags.xml" % host, 'w') as file:
+            file.write(pretty_xml)

@@ -1,0 +1,13 @@
+<filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> 
+    <rf-cfg-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-rf-cfg">
+        <rf-tags>
+            <rf-tag>
+            <tag-name>FR42_STE07ALD</tag-name>
+            <description/>
+            <dot11a-rf-profile-name></dot11a-rf-profile-name>
+            <dot11b-rf-profile-name></dot11b-rf-profile-name>
+            <dot11-6ghz-rf-prof-name></dot11-6ghz-rf-prof-name>
+            </rf-tag>
+        </rf-tags>
+    </rf-cfg-data>
+</filter>
