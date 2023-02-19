@@ -4,6 +4,9 @@
 <img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219956385-baa50880-bb4f-490e-89c6-2a4e0782813a.png">
 
 ## Targeted changes
+
+To do so, the script updates RF Profiles of 2.4GHz, 5GHz and 6GHz bands for given RF Tags.
+
 ### CLI configuration changes
 
 <table>
@@ -46,12 +49,14 @@ Go to ```Configuration > Tags & Profiles > Tags > RF``` section:
 <tr>
 <td>
 
-<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219903092-88f22b85-4e31-4ef2-a6cd-e7fd7f3af408.png">
-</td>
+<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219962987-7938febe-2207-4e95-8df7-4a37bd23994b.png">
+ 
+ </td>
 <td>
-    
-<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219903100-5c4427ec-285c-406b-95f0-9d6ab0e67482.png">
-</td>
+ 
+<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219963013-576873af-39b7-4845-95da-ed1e9f0171c3.png">
+ 
+ </td>
 </tr>
 </table>
 
@@ -119,7 +124,19 @@ python3 src/main.py 1
 ## Output
 <table>
 <tr>
-<th width="800px"> Before </th> <th width="800px"> After </th>
+<th width="800px">
+
+ ```console
+python3 src/main.py 1
+```
+ 
+</th> <th width="800px">
+ 
+ ```console
+python3 src/main.py 0
+```
+ 
+ </th>
 </tr>
 <tr>
 <td>
@@ -129,22 +146,6 @@ python3 src/main.py 1
 </td>
 <td>
 <img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219943608-f1ed543c-9799-46b7-bcc5-d8b9a6bb1f5c.png">
-
-</td>
-</tr>
-<tr>
-<td>
-
-```console
-python3 src/main.py 1
-```
-
-</td>
-<td>
-
-```console
-python3 src/main.py 0
-```
 
 </td>
 </tr>
