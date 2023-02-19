@@ -1,0 +1,6 @@
+<config> 
+    <rf-cfg-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-rf-cfg">
+        <rf-tags>
+        </rf-tags>
+    </rf-cfg-data>
+</config>

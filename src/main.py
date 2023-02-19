@@ -2,6 +2,7 @@
 from ncclient import manager    # ncclient library used to manage NETCONF operations
 import yaml    # yaml library used to read YAML configuration files
 from xml.dom import minidom    # xml.dom library used to parse XML files
+import xmltodict
 
 # Open the configuration YAML file and load its contents into the 'config' variable
 with open('config.yml', 'r') as file:
@@ -16,18 +17,33 @@ for controller in config["controllers"]:
     device_params = {"name": "iosxe"}
 
     # Read in the NETCONF XML configuration file and convert to string
-    netconf_config_xml = minidom.parse('netconf/config/noShutRadios.xml').toxml()
+    # Open the XML file and read its contents
+    with open('netconf/config/rfTagsContainer.xml', 'r') as file:
+        rfTagsContainerDict = xmltodict.parse(file.read())
+
+    with open('netconf/config/rfTag.xml', 'r') as file:
+        rfTagDict = xmltodict.parse(file.read())
+
+    for rfTag in config["rfTags"]:
+        rfTagDict["rf-tag"]["tag-name"] = rfTag["name"]
+        rfTagDict["rf-tag"]["dot11a-rf-profile-name"] = rfTag["rfProfiles"]["5ghz"]
+        rfTagDict["rf-tag"]["dot11b-rf-profile-name"] = rfTag["rfProfiles"]["24ghz"]
+        rfTagDict["rf-tag"]["dot11-6ghz-rf-prof-name"] = rfTag["rfProfiles"]["6ghz"]
+        rfTagsContainerDict["config"]["rf-cfg-data"]["rf-tags"] = []
+        rfTagsContainerDict["config"]["rf-cfg-data"]["rf-tags"].append(rfTagDict)
+    
+    rfTagsContainerXml = xmltodict.unparse(rfTagsContainerDict, pretty=True)
 
     # Connect to the device and edit its configuration
     with manager.connect(host=host, port=port, username=username, password=password, hostkey_verify=False, device_params=device_params) as netconf_manager:
-        edit_config_response = netconf_manager.edit_config(netconf_config_xml, target='running')
+        edit_config_response = netconf_manager.edit_config(rfTagsContainerXml, target='running')
 
     # Read in the NETCONF XML filter file and convert to string
-    netconf_filter_xml = minidom.parse('netconf/filter/getRfTags.xml').toxml()
+    getRfTagsXml = minidom.parse('netconf/filter/getRfTags.xml').toxml()
 
     # Connect to the device and retrieve its configuration, then parse and format the output
     with manager.connect(host=host, port=port, username=username, password=password, hostkey_verify=False, device_params=device_params) as netconf_manager:
-        get_config_response = netconf_manager.get_config('running', netconf_filter_xml).data_xml
+        get_config_response = netconf_manager.get_config('running', getRfTagsXml).data_xml
         parsed_xml = minidom.parseString(get_config_response)
         pretty_xml = parsed_xml.toprettyxml()
         print(pretty_xml)
