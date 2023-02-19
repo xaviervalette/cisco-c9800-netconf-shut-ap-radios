@@ -69,7 +69,13 @@ pip3 install -r requirements.txt
 └── cisco-c9800-netconf-disable-ap-radios/
 +   ├── config.yml
     ├── src/
-    │    └── main.py    
+    │    └── main.py
+    ├── netconf/
+    │    ├── config/
+    │    │     ├── rfTag.xml
+    │    │     └── rfTagsContainer.xml
+    │    └── filter/
+    │          └── getRfTags.xml
     └── conf/
          └── <wlc_ip>_rf-tags.xml  
 ```
