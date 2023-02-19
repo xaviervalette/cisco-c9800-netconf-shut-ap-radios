@@ -5,6 +5,7 @@ from xml.dom import minidom    # xml.dom library used to parse XML files
 import xmltodict
 import sys
 
+# Check if the correct number of arguments have been provided
 if len(sys.argv) != 2:
     print("Usage: python main.py 0 (shut radios) or python main.py 1 (no shut radios)")
     sys.exit(1)
@@ -32,19 +33,25 @@ for controller in config["controllers"]:
     with open('netconf/config/rfTag.xml', 'r') as file:
         rfTagDict = xmltodict.parse(file.read())
 
+    # Loop over all the rfTags defined in the configuration file
     for rfTag in config["rfTags"]:
+        # Set the tag name
         rfTagDict["rf-tag"]["tag-name"] = rfTag["name"]
         if arg == 0:
-            rfTagDict["rf-tag"]["dot11a-rf-profile-name"] = rfTag["rfProfiles"]["no5ghz"]
-            rfTagDict["rf-tag"]["dot11b-rf-profile-name"] = rfTag["rfProfiles"]["no24ghz"]
-            rfTagDict["rf-tag"]["dot11-6ghz-rf-prof-name"] = rfTag["rfProfiles"]["no6ghz"]
+            # Set the rf profiles to the "radiosDown" profiles
+            rfTagDict["rf-tag"]["dot11a-rf-profile-name"] = rfTag["rfProfiles"]["radiosDown"]["5ghz"]
+            rfTagDict["rf-tag"]["dot11b-rf-profile-name"] = rfTag["rfProfiles"]["radiosDown"]["24ghz"]
+            rfTagDict["rf-tag"]["dot11-6ghz-rf-prof-name"] = rfTag["rfProfiles"]["radiosDown"]["6ghz"]
         else:
-            rfTagDict["rf-tag"]["dot11a-rf-profile-name"] = rfTag["rfProfiles"]["5ghz"]
-            rfTagDict["rf-tag"]["dot11b-rf-profile-name"] = rfTag["rfProfiles"]["24ghz"]
-            rfTagDict["rf-tag"]["dot11-6ghz-rf-prof-name"] = rfTag["rfProfiles"]["6ghz"]
+            # Set the rf profiles to the "radiosUp" profiles
+            rfTagDict["rf-tag"]["dot11a-rf-profile-name"] = rfTag["rfProfiles"]["radiosUp"]["5ghz"]
+            rfTagDict["rf-tag"]["dot11b-rf-profile-name"] = rfTag["rfProfiles"]["radiosUp"]["24ghz"]
+            rfTagDict["rf-tag"]["dot11-6ghz-rf-prof-name"] = rfTag["rfProfiles"]["radiosUp"]["6ghz"]
+        # Add the current rfTag to the list of rf-tags in the rfTagsContainer
         rfTagsContainerDict["config"]["rf-cfg-data"]["rf-tags"] = []
         rfTagsContainerDict["config"]["rf-cfg-data"]["rf-tags"].append(rfTagDict)
     
+    # Convert the rfTagsContainer dict to XML and format it
     rfTagsContainerXml = xmltodict.unparse(rfTagsContainerDict, pretty=True)
 
     # Connect to the device and edit its configuration
