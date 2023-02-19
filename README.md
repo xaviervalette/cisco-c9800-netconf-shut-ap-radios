@@ -85,7 +85,16 @@ controllers:
     password: "<wlc NETCONF password>"
     port: "<wlc NETCONF port>"
     host: "<wlc NETCONF @IP>"
-    
+rfTags:
+  - name: FR42_STE07ALD
+    rfProfiles:
+      no24ghz: "<rf profile with 24ghz down>"
+      no5ghz: "<rf profile with 5ghz down>"
+      no6ghz: "<rf profile with 6ghz down>"
+      24ghz: "<rf profile with 24ghz up>"
+      5ghz: "<rf profile with 5ghz up>"
+      6ghz: "<rf profile with 6ghz up>"
+      
 ...
 
 ```
@@ -93,75 +102,18 @@ controllers:
 ```console
 python3 src/main.py
 ```
-## RPC call details
 
+## Output
 <table>
 <tr>
-<th width="800px"> Variable </th> <th width="800px"> Value </th>
+<th width="800px"> Before </th> <th width="800px"> After </th>
 </tr>
 <tr>
-<td> Target datastore </td>
+<td>
+
+<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219943599-50998333-fa66-4aab-96b4-30f38b3e7bcf.png"></td>
 <td>
     
-```running```
-
-</td>
-</tr>
-<tr>
-<td> NETCONF Operation </td>
-<td>
-    
-```get-config```
-
-</td>
-</tr>
-<tr>
-<td> NETCONF Filter </td>
-<td>
-    
-```xml
-<filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> 
-    <rf-cfg-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-rf-cfg">
-        <rf-tags>
-            <rf-tag>
-            <tag-name>FR42_STE07ALD</tag-name>
-            <description/>
-            <dot11a-rf-profile-name></dot11a-rf-profile-name>
-            <dot11b-rf-profile-name></dot11b-rf-profile-name>
-            <dot11-6ghz-rf-prof-name></dot11-6ghz-rf-prof-name>
-            </rf-tag>
-        </rf-tags>
-    </rf-cfg-data>
-</filter>
-```
-
-</td>
-</tr>
-<tr>
-<td> RPC reply </td>
-<td>
-
-```xml
-<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" 
-           xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" 
-           message-id="urn:uuid:21e08907-aa6d-4ce0-a255-b5f2d640b967">
-  <data>
-    <rf-cfg-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-rf-cfg">
-      <rf-tags>
-        <rf-tag>
-          <tag-name>FR42_STE07ALD</tag-name>
-          <dot11a-rf-profile-name>15dbm_5ghz</dot11a-rf-profile-name>
-          <dot11b-rf-profile-name>15dbm_24ghz</dot11b-rf-profile-name>
-          <dot11-6ghz-rf-prof-name>No_6ghz</dot11-6ghz-rf-prof-name>
-        </rf-tag>
-      </rf-tags>
-    </rf-cfg-data>
-  </data>
-</rpc-reply>
-```
-
-</td>
+<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219943608-f1ed543c-9799-46b7-bcc5-d8b9a6bb1f5c.png"></td>
 </tr>
 </table>
-
-
