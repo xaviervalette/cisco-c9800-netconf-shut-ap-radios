@@ -1,7 +1,7 @@
 # Cisco Catalyst 9800 NETCONF disable radios
  A python script using NETCONF shutdown radios of C9800 managed APs:
  
-<img width="725" alt="image" src="https://user-images.githubusercontent.com/28600326/219903794-64f2f4c3-d92e-47fa-bc7f-7d57a7270449.png">
+<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219938190-5cc80d65-f912-40ac-a23e-888f0335a54b.png">
 
 ## Targeted changes
 ### CLI configuration changes
@@ -66,10 +66,12 @@ pip3 install -r requirements.txt
 ```
 3. Add a file called config.yml as follow:
 ```diff
-└── merakiTemplateIpRangeUpdate/
+└── cisco-c9800-netconf-disable-ap-radios/
 +   ├── config.yml
-    └── src/
-         └── main.py      
+    ├── src/
+    │    └── main.py    
+    └── conf/
+         └── <wlc_ip>_rf-tags.xml  
 ```
 4. In the config.yml file, add the following variables:
 ```yaml
