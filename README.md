@@ -78,52 +78,79 @@ pip3 install -r requirements.txt
 #config.yml
 ---
 
+tagName: <RF tag name>
 controllers:
   - name: "<wlc name>"
     username: "<wlc NETCONF username>"
     password: "<wlc NETCONF password>"
     port: "<wlc NETCONF port>"
     host: "<wlc NETCONF @IP>"
-tagName: <RF tag name>
+    
 ...
 
 ```
 5. Now you can run the code by using the following command:
 ```console
-python3 src/updateTemplateIpRange.py
+python3 src/main.py
 ```
+## RPC call details
 
+<table>
+<tr>
+<td> Status </td> <td> Response </td>
+</tr>
+<tr>
+<td> Target datastore </td>
+<td>
+    
+```running```
+
+</td>
+</tr>
+<tr>
+<td> NETCONF Operation </td>
+<td>
+    
+```get-config```
+
+</td>
+</tr>
+<tr>
+<td> Filters </td>
+<td>
+    
 ```xml
-<nc:rpc xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:21e08907-aa6d-4ce0-a255-b5f2d640b967">
-  <nc:get-config>
-    <nc:source>
-      <nc:running/>
-    </nc:source>
-    <nc:filter>
-      <rf-cfg-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-rf-cfg">
+<filter xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"> 
+    <rf-cfg-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-rf-cfg">
         <rf-tags>
-          <rf-tag>
+            <rf-tag>
             <tag-name>FR42_STE07ALD</tag-name>
             <description/>
-            <dot11a-rf-profile-name/>
-            <dot11b-rf-profile-name/>
-            <dot11-6ghz-rf-prof-name/>
-          </rf-tag>
+            <dot11a-rf-profile-name></dot11a-rf-profile-name>
+            <dot11b-rf-profile-name></dot11b-rf-profile-name>
+            <dot11-6ghz-rf-prof-name></dot11-6ghz-rf-prof-name>
+            </rf-tag>
         </rf-tags>
-      </rf-cfg-data>
-    </nc:filter>
-  </nc:get-config>
-</nc:rpc>
-````
+    </rf-cfg-data>
+</filter>
+```
+
+</td>
+</tr>
+<tr>
+<td> RPC reply </td>
+<td>
 
 ```xml
-<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="urn:uuid:21e08907-aa6d-4ce0-a255-b5f2d640b967">
+<rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" 
+           xmlns:nc="urn:ietf:params:xml:ns:netconf:base:1.0" 
+           message-id="urn:uuid:21e08907-aa6d-4ce0-a255-b5f2d640b967">
   <data>
     <rf-cfg-data xmlns="http://cisco.com/ns/yang/Cisco-IOS-XE-wireless-rf-cfg">
       <rf-tags>
         <rf-tag>
           <tag-name>FR42_STE07ALD</tag-name>
-          <dot11a-rf-profile-name>test</dot11a-rf-profile-name>
+          <dot11a-rf-profile-name>15dbm_5ghz</dot11a-rf-profile-name>
           <dot11b-rf-profile-name>15dbm_24ghz</dot11b-rf-profile-name>
           <dot11-6ghz-rf-prof-name>No_6ghz</dot11-6ghz-rf-prof-name>
         </rf-tag>
@@ -132,3 +159,9 @@ python3 src/updateTemplateIpRange.py
   </data>
 </rpc-reply>
 ```
+
+</td>
+</tr>
+</table>
+
+
