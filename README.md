@@ -1,7 +1,7 @@
 # Cisco Catalyst 9800 NETCONF disable radios
  A python script using NETCONF shutdown radios of C9800 managed APs:
  
-<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219938190-5cc80d65-f912-40ac-a23e-888f0335a54b.png">
+<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219953454-903de9df-b297-4a72-9e04-edda8b14c0d2.png">
 
 ## Targeted changes
 ### CLI configuration changes
