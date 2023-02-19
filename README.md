@@ -1,7 +1,7 @@
 # Cisco Catalyst 9800 NETCONF disable radios
  A python script using NETCONF shutdown radios of C9800 managed APs:
  
-<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219938190-5cc80d65-f912-40ac-a23e-888f0335a54b.png">
+<img width="" alt="image" src="https://user-images.githubusercontent.com/28600326/219954881-8771521b-a3a0-485c-aeab-44b52727aff2.png">
 
 ## Targeted changes
 ### CLI configuration changes
@@ -69,7 +69,13 @@ pip3 install -r requirements.txt
 └── cisco-c9800-netconf-disable-ap-radios/
 +   ├── config.yml
     ├── src/
-    │    └── main.py    
+    │    └── main.py
+    ├── netconf/
+    │    ├── config/
+    │    │     ├── rfTag.xml
+    │    │     └── rfTagsContainer.xml
+    │    └── filter/
+    │          └── getRfTags.xml
     └── conf/
          └── <wlc_ip>_rf-tags.xml  
 ```
@@ -99,8 +105,15 @@ rfTags:
 
 ```
 5. Now you can run the code by using the following command:
+
+Disable the radio of access points:
 ```console
-python3 src/main.py
+python3 src/main.py 0
+```
+
+Enable the radio of access points:
+```console
+python3 src/main.py 1
 ```
 
 ## Output
