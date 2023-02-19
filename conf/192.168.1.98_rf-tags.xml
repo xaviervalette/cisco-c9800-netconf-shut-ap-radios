@@ -8,6 +8,13 @@
 				<dot11b-rf-profile-name>15dbm_24ghz</dot11b-rf-profile-name>
 				<dot11-6ghz-rf-prof-name>No_6ghz</dot11-6ghz-rf-prof-name>
 			</rf-tag>
+			<rf-tag>
+				<tag-name>default-rf-tag</tag-name>
+				<description>default RF tag</description>
+				<dot11a-rf-profile-name>No_5ghz</dot11a-rf-profile-name>
+				<dot11b-rf-profile-name>No_24ghz</dot11b-rf-profile-name>
+				<dot11-6ghz-rf-prof-name>No_6ghz</dot11-6ghz-rf-prof-name>
+			</rf-tag>
 		</rf-tags>
 	</rf-cfg-data>
 </data>

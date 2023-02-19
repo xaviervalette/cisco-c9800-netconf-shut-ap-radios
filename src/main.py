@@ -3,6 +3,14 @@ from ncclient import manager    # ncclient library used to manage NETCONF operat
 import yaml    # yaml library used to read YAML configuration files
 from xml.dom import minidom    # xml.dom library used to parse XML files
 import xmltodict
+import sys
+
+if len(sys.argv) != 2:
+    print("Usage: python main.py 0 (shut radios) or python main.py 1 (no shut radios)")
+    sys.exit(1)
+
+# Parse the argument
+arg = sys.argv[1]
 
 # Open the configuration YAML file and load its contents into the 'config' variable
 with open('config.yml', 'r') as file:
@@ -26,9 +34,14 @@ for controller in config["controllers"]:
 
     for rfTag in config["rfTags"]:
         rfTagDict["rf-tag"]["tag-name"] = rfTag["name"]
-        rfTagDict["rf-tag"]["dot11a-rf-profile-name"] = rfTag["rfProfiles"]["5ghz"]
-        rfTagDict["rf-tag"]["dot11b-rf-profile-name"] = rfTag["rfProfiles"]["24ghz"]
-        rfTagDict["rf-tag"]["dot11-6ghz-rf-prof-name"] = rfTag["rfProfiles"]["6ghz"]
+        if arg == 0:
+            rfTagDict["rf-tag"]["dot11a-rf-profile-name"] = rfTag["rfProfiles"]["no5ghz"]
+            rfTagDict["rf-tag"]["dot11b-rf-profile-name"] = rfTag["rfProfiles"]["no24ghz"]
+            rfTagDict["rf-tag"]["dot11-6ghz-rf-prof-name"] = rfTag["rfProfiles"]["no6ghz"]
+        else:
+            rfTagDict["rf-tag"]["dot11a-rf-profile-name"] = rfTag["rfProfiles"]["5ghz"]
+            rfTagDict["rf-tag"]["dot11b-rf-profile-name"] = rfTag["rfProfiles"]["24ghz"]
+            rfTagDict["rf-tag"]["dot11-6ghz-rf-prof-name"] = rfTag["rfProfiles"]["6ghz"]
         rfTagsContainerDict["config"]["rf-cfg-data"]["rf-tags"] = []
         rfTagsContainerDict["config"]["rf-cfg-data"]["rf-tags"].append(rfTagDict)
     
