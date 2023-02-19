@@ -85,7 +85,16 @@ controllers:
     password: "<wlc NETCONF password>"
     port: "<wlc NETCONF port>"
     host: "<wlc NETCONF @IP>"
-    
+rfTags:
+  - name: FR42_STE07ALD
+    rfProfiles:
+      no24ghz: "<rf profile with 24ghz down>"
+      no5ghz: "<rf profile with 5ghz down>"
+      no6ghz: "<rf profile with 6ghz down>"
+      24ghz: "<rf profile with 24ghz up>"
+      5ghz: "<rf profile with 5ghz up>"
+      6ghz: "<rf profile with 6ghz up>"
+      
 ...
 
 ```
