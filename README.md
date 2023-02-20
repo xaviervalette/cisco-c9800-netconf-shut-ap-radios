@@ -109,6 +109,9 @@ rfTags:
 ...
 
 ```
+
+> ⚠ RF Tags and RF Profiles have to be created before using the script
+
 5. Now you can run the code by using the following command:
 
 Disable the radio of access points:
