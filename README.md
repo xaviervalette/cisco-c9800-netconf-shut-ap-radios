@@ -28,12 +28,11 @@ wireless tag rf FR42_STE07ALD
     
 ```diff
 wireless tag rf FR42_STE07ALD
-+24ghz-rf-policy No_24ghz
-+5ghz-rf-policy No_5ghz
-+6ghz-rf-policy No_6ghz
 -24ghz-rf-policy 15dbm_24ghz
++24ghz-rf-policy No_24ghz
 -5ghz-rf-policy 15dbm_5ghz
--6ghz-rf-policy 15dbm_6ghz
++5ghz-rf-policy No_5ghz
+6ghz-rf-policy No_6ghz
 ```
 </td>
 </tr>
@@ -89,7 +88,6 @@ pip3 install -r requirements.txt
 #config.yml
 ---
 
-tagName: <RF tag name>
 controllers:
   - name: "<wlc name>"
     username: "<wlc NETCONF username>"
@@ -99,12 +97,14 @@ controllers:
 rfTags:
   - name: FR42_STE07ALD
     rfProfiles:
-      no24ghz: "<rf profile with 24ghz down>"
-      no5ghz: "<rf profile with 5ghz down>"
-      no6ghz: "<rf profile with 6ghz down>"
-      24ghz: "<rf profile with 24ghz up>"
-      5ghz: "<rf profile with 5ghz up>"
-      6ghz: "<rf profile with 6ghz up>"
+      radiosDown:
+        24ghz: "No_24ghz"
+        5ghz: "No_5ghz"
+        6ghz: "No_6ghz"
+      radiosUp:
+        24ghz: "15dbm_24ghz"
+        5ghz: "15dbm_5ghz"
+        6ghz: "No_6ghz"
       
 ...
 
